@@ -1,5 +1,6 @@
 const express = require("express");
 const { connection } = require("./configs/db");
+const { urlRouter } = require("./routes/url");
 
 require("dotenv").config();
 const app = express();
@@ -8,6 +9,8 @@ app.use(express.json());
 app.get("/", (req,res) => {
     res.send("Home page")
 })
+
+app.use("/url",urlRouter)
 
 app.listen(process.env.PORT, async () => {
   try {

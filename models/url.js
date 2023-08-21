@@ -18,15 +18,13 @@ const shortUrlSchema = new mongoose.Schema({
     type: Number,
     default: 0,
   },
-  customAlias: {
-    type: String,
-    unique: true,
-  },
-  metadata: {
-    userAgent: String,
-    ipAddress: String,
-    referralSource: String,
-  },
+  visitedHistory: [
+    {
+      timestamp: Date,
+      userAgent: String,
+      ipAddress: String,
+    },
+  ],
 });
 
 const ShortUrlModel = mongoose.model("ShortUrl", shortUrlSchema);
