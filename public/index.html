@@ -1,11 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ZipZapURL</title>
-</head>
-<body>
-    
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ZipZapURL - URL Shortener</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+    <header>
+      <h1>ZipZapURL</h1>
+      <div class="url-form">
+        <input type="text" id="originalUrl" placeholder="Enter your URL..." />
+        <button id="zipzapButton">ZipZap My URL</button>
+      </div>
+    </header>
+
+    <main>
+      <section class="url-list">
+        <h2>Shortened URLs</h2>
+        <ul id="urlList"></ul>
+      </section>
+    </main>
+
+    <script src="index.js"></script>
+  </body>
 </html>

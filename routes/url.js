@@ -17,12 +17,10 @@ urlRouter.post("/short", async (req, res) => {
 
     if (existingShortURL) {
       // URL already has a short code, so return the existing short code
-      res
-        .status(200)
-        .json({
-          message: "Short URL already exists",
-          shortCode: existingShortURL.shortCode,
-        });
+      res.status(200).json({
+        message: "Short URL already exists",
+        shortCode: existingShortURL.shortCode,
+      });
     } else {
       // URL doesn't exist, create a new short code
       const shortID = shortid.generate(); // Use shortid.generate() to create a new short ID
@@ -35,6 +33,17 @@ urlRouter.post("/short", async (req, res) => {
         .status(200)
         .json({ message: "Short URL created", shortCode: shortID });
     }
+  } catch (err) {
+    res
+      .status(500)
+      .json({ message: "Internal server error", error: err.message });
+  }
+});
+
+urlRouter.get("/getUrls", async (req, res) => {
+  try {
+    const existing = await ShortUrlModel.find();
+    res.status(201).json({ message: "All Urls loaded", URLs: existing });
   } catch (err) {
     res
       .status(500)
