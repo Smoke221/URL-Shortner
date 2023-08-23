@@ -9,7 +9,7 @@ zipzapButton.addEventListener("click", async () => {
   if (!originalUrl) return;
 
   // Send a POST request to your backend to shorten the URL
-  const response = await fetch("http://localhost:8000/url/short", {
+  const response = await fetch("https://zipzapurl.onrender.com/url/short", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -20,7 +20,7 @@ zipzapButton.addEventListener("click", async () => {
   if (response.ok) {
     originalUrlInput.value = "";
     const responseData = await response.json();
-    const generatedShortUrl = `http://localhost:8000/url/${responseData.shortCode}`;
+    const generatedShortUrl = `https://zipzapurl.onrender.com/url/${responseData.shortCode}`;
     shortUrlElement.textContent = "Short URL: " + generatedShortUrl;
     shortUrlContainer.style.display = "block"; // Show the container
     refreshUrlList();
@@ -29,7 +29,7 @@ zipzapButton.addEventListener("click", async () => {
 
 async function refreshUrlList() {
   // Send a GET request to your backend to get the list of existing URLs
-  const response = await fetch("http://localhost:8000/url/getUrls");
+  const response = await fetch("https://zipzapurl.onrender.com/url/getUrls");
   const data = await response.json();
 
   // Update the UI with the list of existing URLs
@@ -45,8 +45,8 @@ async function refreshUrlList() {
     // Create the anchor tag for the short URL
     const shortUrlAnchor = document.createElement("a");
     shortUrlAnchor.className = "short-url"
-    shortUrlAnchor.href = `http://localhost:8000/url/${urlData.shortCode}`;
-    shortUrlAnchor.textContent = `http://localhost:8000/url/${urlData.shortCode}`;
+    shortUrlAnchor.href = `https://zipzapurl.onrender.com/url/${urlData.shortCode}`;
+    shortUrlAnchor.textContent = `https://zipzapurl.onrender.com/url/${urlData.shortCode}`;
     shortUrlAnchor.target = "_blank"; // Open in a new tab
 
     // Create a copy icon span
@@ -55,7 +55,7 @@ async function refreshUrlList() {
     copyIconSpan.title = "Copy URL";
     copyIconSpan.innerHTML = '<i class="fas fa-copy"></i>';
     copyIconSpan.addEventListener("click", () => {
-      copyToClipboard(`http://localhost:8000/url/${urlData.shortCode}`);
+      copyToClipboard(`https://zipzapurl.onrender.com/url/${urlData.shortCode}`);
     });
 
     // Create a span for the original URL
