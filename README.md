@@ -9,6 +9,10 @@ ZipZapURL is a URL shortener application built using Node.js and Express. It all
 - Provides a user-friendly web interface for generating and managing short links.
 - Displays a list of existing short links along with their original URLs.
 
+## Demo
+
+Try out the live [ZipZapURL](https://zipzapurl.netlify.app/) deployed on Netlify.
+
 ## Installation
 
 1. Clone the repository: ```https://github.com/Smoke221/ZipZapURL-a-URL-shortner.git ```
