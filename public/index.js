@@ -75,13 +75,20 @@ async function refreshUrlList() {
   });
 }
 function copyToClipboard(text) {
-  const tempInput = document.createElement("input");
-  tempInput.value = text;
-  document.body.appendChild(tempInput);
-  tempInput.select();
-  document.execCommand("copy");
-  document.body.removeChild(tempInput);
-}
+    const tempInput = document.createElement("input");
+    tempInput.value = text;
+    document.body.appendChild(tempInput);
+    tempInput.select();
+    document.execCommand("copy");
+    document.body.removeChild(tempInput);
+  
+    // Show the notification
+    const notification = document.getElementById("notification");
+    notification.classList.add("show");
+    setTimeout(() => {
+      notification.classList.remove("show");
+    }, 2000); // Hide the notification after 2 seconds
+  }
 
 // Initial refresh of the URL list
 refreshUrlList();
