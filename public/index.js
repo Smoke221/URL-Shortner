@@ -1,6 +1,8 @@
 const originalUrlInput = document.getElementById("originalUrl");
 const zipzapButton = document.getElementById("zipzapButton");
 const urlList = document.getElementById("urlList");
+const shortUrlContainer = document.getElementById("shortUrlContainer");
+const shortUrlElement = document.getElementById("shortUrl");
 
 zipzapButton.addEventListener("click", async () => {
   const originalUrl = originalUrlInput.value;
@@ -17,6 +19,10 @@ zipzapButton.addEventListener("click", async () => {
 
   if (response.ok) {
     originalUrlInput.value = "";
+    const responseData = await response.json();
+    const generatedShortUrl = `http://localhost:8000/url/${responseData.shortCode}`;
+    shortUrlElement.textContent = "Short URL: " + generatedShortUrl;
+    shortUrlContainer.style.display = "block"; // Show the container
     refreshUrlList();
   }
 });
@@ -38,6 +44,7 @@ async function refreshUrlList() {
 
     // Create the anchor tag for the short URL
     const shortUrlAnchor = document.createElement("a");
+    shortUrlAnchor.className = "short-url"
     shortUrlAnchor.href = `http://localhost:8000/url/${urlData.shortCode}`;
     shortUrlAnchor.textContent = `http://localhost:8000/url/${urlData.shortCode}`;
     shortUrlAnchor.target = "_blank"; // Open in a new tab
@@ -54,7 +61,7 @@ async function refreshUrlList() {
     // Create a span for the original URL
     const originalUrlSpan = document.createElement("span");
     originalUrlSpan.className = "original-url";
-    originalUrlSpan.textContent = urlData.originalUrl;
+    originalUrlSpan.textContent = extractWebsiteName(urlData.originalUrl);
 
     // Append the short URL anchor, copy icon span, and original URL span to the URL container
     urlContainer.appendChild(shortUrlAnchor);
@@ -78,3 +85,8 @@ function copyToClipboard(text) {
 
 // Initial refresh of the URL list
 refreshUrlList();
+
+function extractWebsiteName(url) {
+    const parsedUrl = new URL(url);
+    return parsedUrl.hostname;
+  }

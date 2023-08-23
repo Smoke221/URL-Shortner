@@ -60,7 +60,6 @@ li {
   align-items: center;
   margin-bottom: 10px;
 }
-
 .url-container {
   display: flex;
   align-items: center;
@@ -69,4 +68,50 @@ li {
 .copy-icon {
   margin: 0 10px;
   cursor: pointer;
+}
+
+.short-url-container {
+  display: none;
+  margin-top: 20px;
+  text-align: center;
+  animation: fadeInUp 0.5s ease forwards;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.short-url {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #4caf50;
+  background-color: #f0f0f0;
+  padding: 5px 10px;
+  border-radius: 4px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+}
+
+.short-url:hover {
+  background-color: #e0e0e0;
+}
+
+.original-url {
+  font-size: 1rem;
+  color: #777;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  transition: color 0.3s ease;
+}
+
+.original-url:hover {
+  color: #555;
 }
